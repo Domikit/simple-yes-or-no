@@ -4,11 +4,26 @@ const answerEl = document.getElementById('answer');
 const effectsEl = document.getElementById('effects');
 const resetBtn = document.getElementById('reset');
 const responseHistoryKey = 'yes-or-no-response-history';
+const microsoftFormEndpoint = "https://forms.guest.usercontent.microsoft/formapi/api/9188040d-6c67-4c5b-b112-36a304b66dad/users/00000000-0000-0000-0003-bffd28363fba/forms('DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAO__Sg2P7pUM1U1N1JDOE1BWkZDVEZZWTJXSDZQVVozMS4u')/responses";
+const microsoftFormQuestionId = 'r06ed52b0d86641bda1d2abae667dfadf';
 
 function storeResponse(response){
   const history = JSON.parse(localStorage.getItem(responseHistoryKey) || '[]');
   history.push({ response, recordedAt: new Date().toISOString() });
   localStorage.setItem(responseHistoryKey, JSON.stringify(history));
+}
+
+function submitToMicrosoftForm(response){
+  const submittedAt = new Date().toISOString();
+  const answers = JSON.stringify([{ questionId: microsoftFormQuestionId, answer1: response }]);
+
+  fetch(microsoftFormEndpoint, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ startDate: submittedAt, submitDate: submittedAt, answers })
+  }).catch(() => {
+    // The local history remains available if the visitor is offline.
+  });
 }
 
 function showResultEffect(text){
@@ -39,6 +54,7 @@ function showAnswer(text){
   answerEl.textContent = text;
   answerEl.classList.toggle('no', text === 'No');
   storeResponse(text);
+  submitToMicrosoftForm(text);
   showResultEffect(text);
   // subtle pop animation
   answerEl.animate([
@@ -56,6 +72,7 @@ function resetAnswer(){
   answerEl.textContent = '—';
   answerEl.classList.remove('no');
   storeResponse('Changed their mind');
+  submitToMicrosoftForm('Changed their mind');
   effectsEl.replaceChildren();
   effectsEl.className = 'effects';
   yesBtn.disabled = false;
