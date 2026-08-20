@@ -4,7 +4,7 @@ html,body{height:100%;margin:0;background:radial-gradient(circle at 15% 18%,rgba
 body{display:flex;align-items:center;justify-content:center;padding:20px}
 .card{width:min(560px,100%);max-width:560px;margin:0 auto;padding:clamp(30px,6vw,54px);border:1px solid rgba(255,255,255,.75);border-radius:24px;background:var(--card);box-shadow:0 24px 70px rgba(117,39,70,.18),0 3px 0 rgba(255,255,255,.8) inset;text-align:center;position:relative;overflow:hidden;animation:card-arrive .8s cubic-bezier(.2,.8,.2,1) both}
 .card::before{content:'';position:absolute;right:-70px;top:-80px;width:250px;height:250px;background:radial-gradient(circle,rgba(255,184,201,.72),transparent 62%);transform:rotate(25deg);opacity:.9}
-.card::after{content:'♡';position:absolute;left:24px;bottom:8px;color:rgba(217,63,104,.13);font-size:88px;line-height:1;transform:rotate(-15deg)}
+.card::after{content:'♡';position:absolute;left:18px;bottom:6px;color:rgba(217,63,104,.12);font-size:48px;line-height:1;transform:rotate(-15deg);pointer-events:none}
 .greeting{position:relative;margin:0 0 12px;color:var(--accent);font-size:clamp(19px,4vw,23px);font-weight:700;letter-spacing:.02em;animation:greeting-arrive .7s ease both}
 h1{position:relative;margin:0 auto 28px;max-width:470px;font-size:clamp(30px,6vw,42px);line-height:1.12;color:var(--ink);font-weight:700;animation:title-arrive .7s .15s ease both}
 .heart{color:var(--accent);margin-left:8px;font-size:30px;display:inline-block;transform-origin:center center;animation:beat 1s infinite}

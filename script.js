@@ -3,6 +3,13 @@ const noBtn = document.getElementById('no');
 const answerEl = document.getElementById('answer');
 const effectsEl = document.getElementById('effects');
 const resetBtn = document.getElementById('reset');
+const responseHistoryKey = 'yes-or-no-response-history';
+
+function storeResponse(response){
+  const history = JSON.parse(localStorage.getItem(responseHistoryKey) || '[]');
+  history.push({ response, recordedAt: new Date().toISOString() });
+  localStorage.setItem(responseHistoryKey, JSON.stringify(history));
+}
 
 function showResultEffect(text){
   effectsEl.replaceChildren();
@@ -31,6 +38,7 @@ function showResultEffect(text){
 function showAnswer(text){
   answerEl.textContent = text;
   answerEl.classList.toggle('no', text === 'No');
+  storeResponse(text);
   showResultEffect(text);
   // subtle pop animation
   answerEl.animate([
@@ -47,6 +55,7 @@ function showAnswer(text){
 function resetAnswer(){
   answerEl.textContent = '—';
   answerEl.classList.remove('no');
+  storeResponse('Changed their mind');
   effectsEl.replaceChildren();
   effectsEl.className = 'effects';
   yesBtn.disabled = false;
