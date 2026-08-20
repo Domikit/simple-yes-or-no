@@ -46,5 +46,18 @@ button:disabled{opacity:0.62;cursor:default}
 .hint{margin:14px 0 0;color:var(--muted);font-size:14px;font-style:italic}
 button:focus-visible{outline:3px solid rgba(217,63,104,.35);outline-offset:4px}
 [hidden]{display:none!important}
-@media (max-width:480px){body{padding:12px}.card{padding:28px 18px}.controls.btn-row button{min-height:68px;padding:16px 10px;font-size:20px}}
+@media (max-width:480px){
+	body{min-height:100svh;padding:16px 12px}
+	.card{padding:32px 20px 26px;border-radius:20px}
+	.greeting{font-size:18px;line-height:1.35}
+	h1{margin-bottom:24px;font-size:clamp(28px,8vw,34px)}
+	.controls.btn-row{flex-direction:column;gap:12px;margin-bottom:20px}
+	.controls.btn-row button{min-height:64px;padding:14px 18px;font-size:21px}
+	.answer{min-height:68px;font-size:36px}
+	.hint{line-height:1.4}
+}
+@media (hover:none){
+	button.btn-yes:hover,button.btn-no:hover{transform:none;animation:none;box-shadow:0 10px 24px rgba(217,63,104,.2),0 2px 0 rgba(255,255,255,.35) inset}
+	button.btn-yes:hover::after,button.btn-no:hover::after{opacity:0;animation:none}
+}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
