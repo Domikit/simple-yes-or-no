@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Yes or No</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="card">
+    <p class="greeting">Hi Beautiful!</p>
+    <p class="greeting">You're very cute and I'd like to know more about you!</p>
+    <h1>Will you go out with me? <span class="heart">♥</span></h1>
+    <div class="controls btn-row">
+      <button id="yes" class="btn-yes">Yes</button>
+      <button id="no" class="btn-no">No</button>
+    </div>
+    <div id="answer" class="answer" aria-live="polite">—</div>
+    <button id="reset" class="reset-btn" type="button" hidden>I've changed my mind</button>
+    <p class="hint">Click a button to answer.</p>
+  </main>
+  <div id="effects" class="effects" aria-hidden="true"></div>
+  <script src="script.js"></script>
+</body>
+</html>
